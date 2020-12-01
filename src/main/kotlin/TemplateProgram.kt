@@ -81,28 +81,29 @@ fun main() = application {
         val tileSize = 40
         val plexusThreshold = 35.0
         val particleRadius = 1.5
-        val colorMap = ColorMap(listOf("4affff","38afff","764efb","f72585", "000000"))
+        val colorMap = ColorMap(listOf("4affff", "38afff", "764efb", "f72585", "000000"))
 
         val grid = TileGrid<Vector3>(-width / 2.0, -height / 2.0, width, height, tileSize, tileSize)
         val waveOrigin1 = Vector3(250.0, 0.0, -200.0)
 
-        val params = @Description("noise params") object {
-            @DoubleParameter("scale", 0.0, 1.0)
-            var scale = 0.01
+        val params =
+                @Description("noise params")
+                object {
+                    @DoubleParameter("scale", 0.0, 1.0)
+                    var scale = 0.01
 
-            @DoubleParameter("magnitude", 0.0, 40.0, precision = 1)
-            var magnitude = 12.0
-        }
+                    @DoubleParameter("magnitude", 0.0, 40.0, precision = 1)
+                    var magnitude = 12.0
+                }
 
-//        val blur = BokehDepthBlur()
         val blurTarget = renderTarget(width, height) { colorBuffer(); depthBuffer() }
 
         val camera = OrbitalCamera(
-            eye = Vector3(x=-22.5, y=277.95, z=365.84),
-            lookAt = Vector3(x=-68.55, y=-180.0, z=36.86),
-            //eye = Vector3(0.0, 0.0, depth.toDouble() / 2.0),
-            //lookAt = Vector3.ZERO,
-            fov = 60.0
+                eye = Vector3(x = -22.5, y = 277.95, z = 365.84),
+                lookAt = Vector3(x = -68.55, y = -180.0, z = 36.86),
+                //eye = Vector3(0.0, 0.0, depth.toDouble() / 2.0),
+                //lookAt = Vector3.ZERO,
+                fov = 60.0
         )
 
         val particleGeometry = vertexBuffer(vertexFormat { position(3) }, 12).apply {
@@ -115,7 +116,7 @@ fun main() = application {
         }
 
         val initialParticlePositions = poissonDiskSampling(width.toDouble(), height.toDouble(), poissonRadius).map {
-            (it - Vector2(width/2.0, height/2.0)).let { Vector3(it.x, 0.0, it.y) }
+            (it - Vector2(width / 2.0, height / 2.0)).let { Vector3(it.x, 0.0, it.y) }
         }
 
         val particleTransforms = vertexBuffer(vertexFormat {
@@ -142,8 +143,8 @@ fun main() = application {
 
             val positions = initialParticlePositions.mapIndexed { _, pos ->
                 val noisePos = Vector2(
-                    params.scale * pos.x + cos(2 * PI * time),
-                    params.scale * pos.z + sin(2 * PI * time),
+                        params.scale * pos.x + cos(2 * PI * time),
+                        params.scale * pos.z + sin(2 * PI * time),
                 )
                 val dx1 = params.magnitude * simplex(1, noisePos)
                 val dz1 = params.magnitude * simplex(2, noisePos)
@@ -168,7 +169,7 @@ fun main() = application {
             for (pos in positions) {
                 val key = pos.xz
                 val neighbors = grid.queryRange(
-                    Rectangle.fromCenter(key, 2 * plexusThreshold, 2 * plexusThreshold)
+                        Rectangle.fromCenter(key, 2 * plexusThreshold, 2 * plexusThreshold)
                 ).filter {
                     it !== pos && it.distanceTo(pos) <= plexusThreshold
                 }
@@ -211,10 +212,10 @@ fun main() = application {
                     drawer.fill = colorMap[0.0]
                     drawer.stroke = null
                     drawer.vertexBufferInstances(
-                        listOf(particleGeometry),
-                        listOf(particleTransforms),
-                        DrawPrimitive.TRIANGLE_FAN,
-                        particleTransforms.vertexCount
+                            listOf(particleGeometry),
+                            listOf(particleTransforms),
+                            DrawPrimitive.TRIANGLE_FAN,
+                            particleTransforms.vertexCount
                     )
                     drawer.shadeStyle = null
 
@@ -223,7 +224,7 @@ fun main() = application {
                         it.length.rangeMap(0.0, 35.0, 16.0, 3.0)
                     }
                     val colors = segments.map { segment ->
-                        var lengthFactor = clamp(1 - segment.length/plexusThreshold, 0.0, 1.0)
+                        var lengthFactor = clamp(1 - segment.length / plexusThreshold, 0.0, 1.0)
                         lengthFactor = 1 - (1 - lengthFactor).pow(1.5)
                         colorMap[1 - lengthFactor]//.opacify(0.3 + 0.7 * lengthFactor)
                     }
@@ -247,8 +248,8 @@ fun main() = application {
         val videoTarget = renderTarget(width, height) { colorBuffer() }
         val videoWriter = VideoWriter.create()
             .size(width, height)
-            .frameRate(60)
-            .output("video/plexus-waves-2.mp4")
+            .frameRate(240)
+            .output("C://video/plexus-waves-2.mp4")
         videoWriter.start()
 
         extend {
