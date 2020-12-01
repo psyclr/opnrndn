@@ -1,0 +1,15 @@
+ffmpeg version 2020-11-29-git-f194cedfe6-full_build-www.gyan.dev Copyright (c) 2000-2020 the FFmpeg developers
+  built with gcc 10.2.0 (Rev5, Built by MSYS2 project)
+  configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-lzma --enable-libsnappy --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-sdl2 --enable-libdav1d --enable-libzvbi --enable-librav1e --enable-libsvtav1 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-libass --enable-frei0r --enable-libfreetype --enable-libfribidi --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-ffnvcodec --enable-nvdec --enable-nvenc --enable-d3d11va --enable-dxva2 --enable-libmfx --enable-libglslang --enable-vulkan --enable-opencl --enable-libcdio --enable-libgme --enable-libmodplug --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libshine --enable-libtheora --enable-libtwolame --enable-libvo-amrwbenc --enable-libilbc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-ladspa --enable-libbs2b --enable-libflite --enable-libmysofa --enable-librubberband --enable-libsoxr --enable-chromaprint
+  libavutil      56. 61.100 / 56. 61.100
+  libavcodec     58.114.100 / 58.114.100
+  libavformat    58. 64.100 / 58. 64.100
+  libavdevice    58. 11.103 / 58. 11.103
+  libavfilter     7. 91.100 /  7. 91.100
+  libswscale      5.  8.100 /  5.  8.100
+  libswresample   3.  8.100 /  3.  8.100
+  libpostproc    55.  8.100 / 55.  8.100
+Input #0, rawvideo, from 'pipe:':
+  Duration: N/A, start: 0.000000, bitrate: 110592 kb/s
+    Stream #0:0: Video: rawvideo (RGBA / 0x41424752), rgba, 240x240, 110592 kb/s, 60 tbr, 60 tbn, 60 tbc
+video/plexus-waves-2.mp4: No such file or directory

@@ -12,7 +12,7 @@ val applicationMainClass = "TemplateProgramKt"
 /*  Which additional (ORX) libraries should be added to this project. */
 val orxFeatures = setOf(
 //  "orx-boofcv",
-//  "orx-camera",
+  "orx-camera",
 //  "orx-chataigne",
     "orx-compositor",
 //  "orx-dnk3",
@@ -29,7 +29,7 @@ val orxFeatures = setOf(
 //  "orx-interval-tree",
 //  "orx-jumpflood",
 //  "orx-kdtree",
-//  "orx-mesh-generators",
+  "orx-mesh-generators",
 //  "orx-midi",
 //  "orx-no-clear",
     "orx-noise",
@@ -126,7 +126,6 @@ fun DependencyHandler.openrndrNatives(module: String): Any {
 fun DependencyHandler.orxNatives(module: String): Any {
     return "org.openrndr.extra:$module-natives-$openrndrOs:$orxVersion"
 }
-
 dependencies {
     /*  This is where you add additional (third-party) dependencies */
 
@@ -142,7 +141,8 @@ dependencies {
     implementation(openrndr("animatable"))
     implementation(openrndr("extensions"))
     implementation(openrndr("filter"))
-
+    implementation("org.openrndr.extra:orx-mesh-generators:0.3.53-rc.7")
+    implementation("org.openrndr.extra:orx-camera:0.3.53-rc.7")
     implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core","1.3.9")
     implementation("io.github.microutils", "kotlin-logging","1.12.0")
 
